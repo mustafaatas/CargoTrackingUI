@@ -3,17 +3,16 @@ import About from '@/views/About.vue'
 import DealerList from "@/views/DealerList.vue"
 import DealerDetails from '@/views/DealerDetails.vue'
 
-
-
 const routes = [
   {
     path: '/',
-    name: 'dealer',
-    component: DealerList
+    name: 'about',
+    component: About
   },
   {
     path: '/dealer/getDealer/:id',
     name: 'DealerDetails',
+    props: true,
     component: DealerDetails
   },
   {

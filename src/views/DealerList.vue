@@ -1,39 +1,42 @@
 <template>
   <div class="dealers container">
-    <h3 class="my-5"><strong>Dealer List</strong></h3>
-    <button
-      type="button"
-      class="btn btn-outline-success m-2 float-end allButton"
-      data-bs-toggle="modal"
-      data-bs-target="#exampleModal"
-      @click="addClick()"
-    >
-      Add Dealer
-    </button>
-    <br />
+    <div class="cont">
+      <h3 class="my-5 left-cont"><strong>Dealer List</strong></h3>
+      <button
+        type="button"
+        class="btn btn-outline-success m-2 float-end right-cont"
+      >
+        <fa icon="add" class="mr-1" /> Add Dealer
+      </button>
+    </div>
+
     <table class="table table-striped">
       <thead>
         <tr>
           <th>Id</th>
-          <th>Zip Code</th>
+          <th class="ml-5">Zip Code</th>
           <th>Adress</th>
-          <th>Options</th>
+          <th class="ml-5">Options</th>
         </tr>
       </thead>
       <tbody>
         <tr class="dealer-card" v-for="dealer in dealers" :key="dealer.id">
-          <td>{{ dealer.id }}</td>
-          <td>{{ dealer.zipCode }}</td>
-          <td>{{ dealer.adress }}</td>
-          <td>
-            <button class="btn btn-outline-primary">Edit</button>
-            <button class="btn btn-outline-info">
-              <router-link props: { id: dealer.id }
-                :to="{ name: 'DealerDetails', params: { id: dealer.id } }"
-                >View Details</router-link
-              >
+          <td class="col-2">{{ dealer.id }}</td>
+          <td class="col-3">{{ dealer.zipCode }}</td>
+          <td class="col-4">{{ dealer.adress }}</td>
+          <td class="col-3">
+            <button class="btn btn-warning" title="Edit">
+              <fa icon="edit" />
             </button>
-            <button class="btn btn-outline-danger">Delete</button>
+            <button class="btn btn-info" title="View Details">
+              <router-link
+                :to="{ name: 'DealerDetails', params: { id: dealer.id } }"
+                ><fa icon="eye"
+              /></router-link>
+            </button>
+            <button class="btn btn-danger" title="Remove">
+              <fa icon="remove" />
+            </button>
           </td>
         </tr>
       </tbody>
@@ -48,12 +51,12 @@ import axios from 'axios'
 export default {
   name: 'Dealer',
   components: {},
-  props: {
-    dealer: {
-      type: Object,
-      required: true,
-    },
-  },
+  // props: {
+  //   dealer: {
+  //     type: Object,
+  //     required: true,
+  //   },
+  // },
   data() {
     return {
       dealers: {},
@@ -94,9 +97,32 @@ export default {
   text-decoration: none;
 }
 
+.cont {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-cont {
+  display: flex;
+  align-items: center;
+}
+
+.right-cont {
+  display: flex;
+  align-items: center;
+}
+
 button {
-  margin-right: 3px;
+  margin-right: 15px;
+}
+
+button:hover {
+  border-radius: 0.4rem;
+}
+
+td {
+  vertical-align: middle;
 }
 </style>
-
-

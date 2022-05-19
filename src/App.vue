@@ -19,7 +19,7 @@
             />
           </router-link>
           <button
-            class="navbar-toggler"
+            class="navbar-toggler collapsed"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -58,7 +58,9 @@
   <footer class="blog-footer mt-5">
     <p>
       The website built for
-      <a href="https://github.com/mustafaatas/CargoTracking">Cargo Tracking</a>
+      <a href="https://github.com/mustafaatas/CargoTrackingUI"
+        >Cargo Tracking</a
+      >
       by Mustafa Ataş.
     </p>
     <p>
@@ -100,5 +102,6 @@ h4 {
   background-color: #f9f9f9;
   border-top: 0.05rem solid #e5e5e5;
   display: block;
+  border: 0;
 }
 </style>
