@@ -18,11 +18,11 @@ export default {
         return DealerService.get('getDealer/' + id)
     },
 
-    createDealers() {
+    createDealer() {
         return DealerService.post('createDealers')
     },
 
-    updateDealers(id) {
+    updateDealer(id) {
         return DealerService.put('updateDealer/' + id)
     },
 

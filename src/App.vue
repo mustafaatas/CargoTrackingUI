@@ -78,6 +78,10 @@
   color: #2c3e50;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 #nav {
   padding: 30px;
 }

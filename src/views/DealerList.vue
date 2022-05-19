@@ -25,7 +25,11 @@
           <td class="col-3">{{ dealer.zipCode }}</td>
           <td class="col-4">{{ dealer.adress }}</td>
           <td class="col-3">
-            <button class="btn btn-warning" title="Edit">
+            <button
+              class="btn btn-warning"
+              title="Edit"
+              @click="updateDealer(dealer.id)"
+            >
               <fa icon="edit" />
             </button>
             <button class="btn btn-info" title="View Details">
@@ -34,7 +38,11 @@
                 ><fa icon="eye"
               /></router-link>
             </button>
-            <button class="btn btn-danger" title="Remove">
+            <button
+              class="btn btn-danger"
+              title="Remove"
+              @click="deleteDealer(dealer.id)"
+            >
               <fa icon="remove" />
             </button>
           </td>
@@ -46,7 +54,6 @@
 
 <script>
 import DealerService from '@/services/DealerService.js'
-import axios from 'axios'
 
 export default {
   name: 'Dealer',
@@ -75,19 +82,18 @@ export default {
   methods: {
     deleteDealer(id) {
       console.log(id)
-      console.log(DealerService.baseURL + '\n')
-      axios
-        .delete(DealerService.baseURL + 'dealer/deleteDealer/' + id)
-        .then((response) => {
-          console.log(response)
-        })
+      if (!confirm('Are you sure?')) {
+        return
+      }
+      DealerService.deleteDealer(id).then(() => {
+        this.$router.go()
+      })
     },
-    // createDealer() {
-    //   DealerService.createDealer(this.dealer)
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   })
-    // },
+
+    updateDealer(id) {
+      console.log(id)
+      DealerService.updateDealer(id)
+    },
   },
 }
 </script>

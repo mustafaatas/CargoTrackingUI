@@ -10,15 +10,20 @@ const routes = [
     component: About
   },
   {
+    path: '/dealer',
+    name: 'dealer',
+    component: DealerList
+  },
+  // {
+  //   path: '/dealer/deleteDealer/:id',
+  //   name: 'dealer',
+  //   component: DealerDetails
+  // },
+  {
     path: '/dealer/getDealer/:id',
     name: 'DealerDetails',
     props: true,
     component: DealerDetails
-  },
-  {
-    path: '/dealer',
-    name: 'dealer',
-    component: DealerList
   },
   {
     path: '/about',
