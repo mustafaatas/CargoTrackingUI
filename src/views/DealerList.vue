@@ -6,7 +6,7 @@
         type="button"
         class="btn btn-outline-success m-2 float-end right-cont"
       >
-        <fa icon="add" class="mr-1" /> Add Dealer
+        <fa icon="add" /> Add Dealer
       </button>
     </div>
 
@@ -26,20 +26,20 @@
           <td class="col-4">{{ dealer.adress }}</td>
           <td class="col-3">
             <button
-              class="btn btn-warning"
+              class="btn btn-outline-warning btn-sm"
               title="Edit"
               @click="updateDealer(dealer.id)"
             >
               <fa icon="edit" />
             </button>
-            <button class="btn btn-info" title="View Details">
+            <button class="btn btn-outline-info btn-sm" title="View Details">
               <router-link
                 :to="{ name: 'DealerDetails', params: { id: dealer.id } }"
                 ><fa icon="eye"
               /></router-link>
             </button>
             <button
-              class="btn btn-danger"
+              class="btn btn-outline-danger btn-sm"
               title="Remove"
               @click="deleteDealer(dealer.id)"
             >
@@ -122,6 +122,10 @@ export default {
 
 button {
   margin-right: 15px;
+}
+
+.btn-sm {
+  width: 15%;
 }
 
 button:hover {

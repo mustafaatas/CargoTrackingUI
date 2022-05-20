@@ -14,11 +14,6 @@ const routes = [
     name: 'dealer',
     component: DealerList
   },
-  // {
-  //   path: '/dealer/deleteDealer/:id',
-  //   name: 'dealer',
-  //   component: DealerDetails
-  // },
   {
     path: '/dealer/getDealer/:id',
     name: 'DealerDetails',
