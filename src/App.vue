@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <navbar></navbar>
-    <router-view></router-view>
+    <navbar :user="user"></navbar>
+    <router-view :user="user"></router-view>
+    <foot></foot>
   </div>
-  <foot></foot>
 </template>
 
 <script>
@@ -15,6 +15,15 @@ export default {
   components: {
     Navbar,
     Foot,
+  },
+  data() {
+    return {
+      user: '',
+    }
+  },
+  created() {
+    const response = localStorage.getItem('jwtToken')
+    this.user = response
   },
 }
 </script>

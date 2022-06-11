@@ -1,10 +1,10 @@
 import axios from 'axios'
 
+console.log(localStorage.getItem('jwtToken'))
 const DealerService = axios.create({
     baseURL: 'https://localhost:44384/dealer/',
-    withCredentials: false,
     headers: {
-        Accept: 'application/json',
+        'Authorization': "Bearer " + localStorage.getItem('jwtToken'), Accept: 'application/json',
         'Content-Type': 'application/json'
     }
 })

@@ -65,7 +65,6 @@ export default {
     DealerService.getDealer(this.id)
       .then((response) => {
         this.dealer = response.data
-        console.log(response.data + 'fdsfdsf')
       })
       .catch((error) => {
         console.log(error)

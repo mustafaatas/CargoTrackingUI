@@ -57,13 +57,8 @@ import DealerService from '@/services/DealerService.js'
 
 export default {
   name: 'Dealer',
+  props: ['role'],
   components: {},
-  // props: {
-  //   dealer: {
-  //     type: Object,
-  //     required: true,
-  //   },
-  // },
   data() {
     return {
       dealers: {},

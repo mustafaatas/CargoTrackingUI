@@ -28,21 +28,28 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto me-2">
             <li class="nav-item">
-              <router-link class="nav-link" to="/dealer">Dealers</router-link>
+              <router-link class="nav-link" to="/dealer" v-if="user"
+                >Dealers</router-link
+              >
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/employee"
+              <router-link class="nav-link" to="/employee" v-if="user"
                 >Employees</router-link
               >
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/role">Roles</router-link>
+              <router-link class="nav-link" to="/login" v-if="!user"
+                >Login</router-link
+              >
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/cargo">Cargos</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/user">Users</router-link>
+              <router-link
+                class="nav-link"
+                to="/login"
+                v-if="user"
+                @click="logout()"
+                >Logout</router-link
+              >
             </li>
           </ul>
         </div>
@@ -52,7 +59,23 @@
 </template>
 
 <script>
-export default {}
+import axios from 'axios'
+
+export default {
+  name: 'Navbar',
+  props: ['user', 'role'],
+  data() {
+    return {
+      control: false,
+    }
+  },
+  methods: {
+    logout() {
+      axios.post('https://localhost:44384/Authenticate/Logout')
+      localStorage.removeItem('jwtToken')
+    },
+  },
+}
 </script>
 
 <style>
