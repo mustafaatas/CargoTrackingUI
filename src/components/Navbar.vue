@@ -63,7 +63,7 @@ import axios from 'axios'
 
 export default {
   name: 'Navbar',
-  props: ['user', 'role'],
+  props: ['user'],
   data() {
     return {
       control: false,

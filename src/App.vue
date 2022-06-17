@@ -22,8 +22,7 @@ export default {
     }
   },
   created() {
-    const response = localStorage.getItem('jwtToken')
-    this.user = response
+    this.user = localStorage.getItem('jwtToken')
   },
 }
 </script>

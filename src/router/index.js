@@ -3,6 +3,7 @@ import About from '@/views/About.vue'
 import DealerList from "@/views/DealerList.vue"
 import DealerDetails from '@/views/DealerDetails.vue'
 import Login from '@/views/Login.vue'
+import PageNotFound from '../components/PageNotFound.vue'
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    name: 'PageNotFound',
+    path: '/:pathMatch(.*)*',
+    component: PageNotFound
   }
 ]
 

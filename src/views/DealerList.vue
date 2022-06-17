@@ -61,7 +61,7 @@ export default {
   components: {},
   data() {
     return {
-      dealers: {},
+      dealers: null,
     }
   },
   mounted() {

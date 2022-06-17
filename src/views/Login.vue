@@ -67,6 +67,7 @@ export default {
       mail: '',
       password: '',
       role: '',
+      dealerId: 0,
     }
   },
   methods: {
@@ -82,11 +83,12 @@ export default {
           localStorage.setItem('jwtToken', response.data.token)
           setAuthHeader(response.data.token)
           let role = response.data.userRoles
+          let dealerId = response.data.dealerId
 
           if (role == 'Manager') {
             window.location.href = 'dealer'
           } else if (role == 'Dealer Manager') {
-            window.location.href = 'dealer/getdealer/203'
+            window.location.href = `dealer/getdealer/${dealerId}`
           }
         })
         .catch((error) => {
