@@ -37,6 +37,7 @@
               type="password"
               id="password"
               class="form-control"
+              autocomplete="on"
               v-model="password"
             />
 
@@ -57,6 +58,7 @@
 <script>
 import axios from 'axios'
 import setAuthHeader from '../utils/setAuthHeader'
+import { mapState } from 'vuex'
 
 export default {
   props: {
@@ -64,12 +66,16 @@ export default {
   },
   data() {
     return {
-      mail: '',
-      password: '',
+      mail: 'demo@gmail.com',
+      password: '123456Aa.',
       role: '',
       dealerId: 0,
     }
   },
+  computed: {
+    ...mapState(['user']),
+  },
+
   methods: {
     login() {
       const credentials = {
@@ -79,15 +85,24 @@ export default {
       axios
         .post('https://localhost:44384/Authenticate/Login', credentials)
         .then((response) => {
-          console.log('dogru')
+          localStorage.setItem('user', JSON.stringify(response.data))
           localStorage.setItem('jwtToken', response.data.token)
           setAuthHeader(response.data.token)
+          this.$store.commit('setUser', response.data)
+          console.log(response.data)
+          console.log(this.$store.getters)
+
           let role = response.data.userRoles
           let dealerId = response.data.dealerId
 
           if (role == 'Manager') {
+            //this.$router.push('/dealer')
             window.location.href = 'dealer'
           } else if (role == 'Dealer Manager') {
+            // this.$router.push({
+            //   name: 'DealerDetails',
+            //   params: { id: dealerId },
+            // })
             window.location.href = `dealer/getdealer/${dealerId}`
           }
         })

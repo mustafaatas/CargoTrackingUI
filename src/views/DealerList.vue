@@ -8,7 +8,20 @@
       >
         <fa icon="add" /> Add Dealer
       </button>
+      <!-- <example-modal ref="modal"></example-modal> -->
     </div>
+    <!-- <Toolbar class="mb-4">
+      <template #start>
+        <Button label="New" icon="pi pi-plus" class="p-button-success mr-2" />
+        <Button label="Delete" icon="pi pi-trash" class="p-button-danger" />
+      </template>
+    </Toolbar> -->
+    <!-- <DataTable :value="dealers" stripedRows responsiveLayout="scroll">
+      <Column field="id" header="Id"></Column>
+      <Column field="zipCode" header="Zip Code"></Column>
+      <Column field="adress" header="Adress"></Column> -->
+    <!-- <Column header="Options"></Column> -->
+    <!-- </DataTable> -->
 
     <table class="table table-striped">
       <thead>
@@ -54,21 +67,37 @@
 
 <script>
 import DealerService from '@/services/DealerService.js'
+//import exampleModal from '../components/exampleModal.vue'
+//import $ from 'jquery'
+import 'vuex'
 
 export default {
   name: 'Dealer',
   props: ['role'],
-  components: {},
+  components: {
+    /*exampleModal*/
+  },
   data() {
     return {
       dealers: null,
+      //dealerDialog: false,
+      // deleteDealerDialog: false,
+      // deleteDealersDialog: false,
+      // dealer: {},
+      // selectedDealers: null,
+      // filters: {},
+      // submitted: false,
     }
   },
   mounted() {
+    console.log(this.$store.getters.user)
     DealerService.getDealers()
       .then((response) => {
         this.dealers = response.data
-        console.log(response.data)
+        // if ('Manager' == response.data.userRoles) {
+        //   this.isManager = false
+        //   console.log(this.isManager)
+        // }
       })
       .catch((error) => {
         console.log(error)
@@ -89,6 +118,24 @@ export default {
       console.log(id)
       DealerService.updateDealer(id)
     },
+
+    // showModal() {
+    //   console.log('mustafaaaaaaaaaaaaaa')
+    //   console.log(this.$refs.modal.$el, ' deneme')
+    //   let element = this.$refs.modal.$el
+    //   console.log(element, 'dsfdfsfds')
+    //   element.modal('show')
+    // },
+
+    // openNew() {
+    //   this.dealer = {}
+    //   this.submitted = false
+    //   this.productDialog = true
+    // },
+
+    // confirmDeleteSelected() {
+    //   this.deleteProductsDialog = true
+    // },
   },
 }
 </script>

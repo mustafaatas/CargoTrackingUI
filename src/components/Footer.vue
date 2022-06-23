@@ -10,20 +10,24 @@
       </p>
     </div>
     <div>
-      <a href="https://www.instagram.com/atas_mustafaa1" title="instagram"
+      <a
+        href="https://www.instagram.com/atas_mustafaa1"
+        title="instagram"
+        target="_blank"
         ><i class="fa-brands fa-instagram m-1"></i
       ></a>
-      <a href="https://www.youtube.com" title="youtube">
+      <a href="https://www.youtube.com" title="youtube" target="_blank">
         <i class="fa-brands fa-youtube m-1"></i
       ></a>
 
       <a
         href="https://www.linkedin.com/in/mustafa-atas-84a898205/"
         title="linkedin"
+        target="_blank"
         ><i class="fa-brands fa-linkedin-in m-1"></i
       ></a>
 
-      <a href="https://github.com/mustafaatas" title="github"
+      <a href="https://github.com/mustafaatas" title="github" target="_blank"
         ><i class="fa-brands fa-github m-1"></i
       ></a>
     </div>

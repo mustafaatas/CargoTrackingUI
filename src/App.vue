@@ -1,14 +1,16 @@
 <template>
   <div id="app">
-    <navbar :user="user"></navbar>
-    <router-view :user="user"></router-view>
+    <navbar></navbar>
+    <router-view></router-view>
     <foot></foot>
   </div>
 </template>
 
 <script>
+// import axios from 'axios'
 import Navbar from './components/Navbar.vue'
 import Foot from './components/Footer.vue'
+import setAuthHeader from './utils/setAuthHeader'
 
 export default {
   name: 'app',
@@ -16,13 +18,14 @@ export default {
     Navbar,
     Foot,
   },
-  data() {
-    return {
-      user: '',
+
+  mounted() {
+    let userData = localStorage.getItem('user')
+    if (userData) {
+      var user = JSON.parse(userData.toString())
+      setAuthHeader(user.token)
+      this.$store.commit('setUser', user)
     }
-  },
-  created() {
-    this.user = localStorage.getItem('jwtToken')
   },
 }
 </script>

@@ -60,19 +60,19 @@
 
 <script>
 import axios from 'axios'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Navbar',
-  props: ['user'],
-  data() {
-    return {
-      control: false,
-    }
+  computed: {
+    ...mapGetters(['user']),
   },
   methods: {
     logout() {
       axios.post('https://localhost:44384/Authenticate/Logout')
       localStorage.removeItem('jwtToken')
+      localStorage.removeItem('user')
+      this.$store.dispatch('user', null)
     },
   },
 }
