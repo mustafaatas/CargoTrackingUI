@@ -1,57 +1,28 @@
 <template>
-  <div>
-    <div class="mb-2">
-      <b-button @click="showMsgBoxOne">Simple msgBoxConfirm</b-button>
-      Return value: {{ String(boxOne) }}
+  <transition name="fade">
+    <div class="vue-modal" v-show="open">
+      <transition name="drop-in">
+        <div class="vue-modal-inner">
+          <div class="vue-modal-content">
+            <slot />
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam,
+            cupiditate. Laudantium illum accusantium commodi autem incidunt
+            atque, hic nobis tempore neque quae voluptas aperiam, maxime quo
+            distinctio quaerat cupiditate. Neque, odit repellendus aperiam
+            magnam quidem rem placeat dolores aliquam vitae reiciendis voluptas
+            qui fugiat iusto et illo excepturi voluptatibus voluptatem facere
+            dolorum esse perferendis, reprehenderit autem? Eos id voluptatem
+            velit iusto dignissimos neque aliquid similique in laboriosam
+            molestias atque saepe aspernatur qui esse ipsam doloremque porro
+            magni fugiat, culpa suscipit ratione amet. Nihil cum vel nemo
+            consequuntur, dolore vero itaque soluta voluptates atque, dolor ipsa
+            excepturi quia fuga blanditiis tempora?
+            <div>
+              <button></button>
+            </div>
+          </div>
+        </div>
+      </transition>
     </div>
-    <div class="mb-1">
-      <b-button @click="showMsgBoxTwo">msgBoxConfirm with options</b-button>
-      Return value: {{ String(boxTwo) }}
-    </div>
-  </div>
+  </transition>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      boxOne: '',
-      boxTwo: '',
-    }
-  },
-  methods: {
-    showMsgBoxOne() {
-      this.boxOne = ''
-      this.$bvModal
-        .msgBoxConfirm('Are you sure?')
-        .then((value) => {
-          this.boxOne = value
-        })
-        .catch((err) => {
-          // An error occurred
-        })
-    },
-    showMsgBoxTwo() {
-      this.boxTwo = ''
-      this.$bvModal
-        .msgBoxConfirm('Please confirm that you want to delete everything.', {
-          title: 'Please Confirm',
-          size: 'sm',
-          buttonSize: 'sm',
-          okVariant: 'danger',
-          okTitle: 'YES',
-          cancelTitle: 'NO',
-          footerClass: 'p-2',
-          hideHeaderClose: false,
-          centered: true,
-        })
-        .then((value) => {
-          this.boxTwo = value
-        })
-        .catch((err) => {
-          // An error occurred
-        })
-    },
-  },
-}
-</script>

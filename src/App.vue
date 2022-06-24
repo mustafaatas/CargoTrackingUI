@@ -7,7 +7,6 @@
 </template>
 
 <script>
-// import axios from 'axios'
 import Navbar from './components/Navbar.vue'
 import Foot from './components/Footer.vue'
 import setAuthHeader from './utils/setAuthHeader'

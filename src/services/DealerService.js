@@ -18,8 +18,8 @@ export default {
         return DealerService.get('getDealer/' + id)
     },
 
-    createDealer() {
-        return DealerService.post('createDealers')
+    createDealer(dealer) {
+        return DealerService.post('createDealer', dealer)
     },
 
     updateDealer(id) {

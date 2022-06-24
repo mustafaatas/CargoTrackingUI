@@ -61,9 +61,6 @@ import setAuthHeader from '../utils/setAuthHeader'
 import { mapState } from 'vuex'
 
 export default {
-  props: {
-    msg: String,
-  },
   data() {
     return {
       mail: 'demo@gmail.com',

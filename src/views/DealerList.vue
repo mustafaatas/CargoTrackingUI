@@ -5,23 +5,15 @@
       <button
         type="button"
         class="btn btn-outline-success m-2 float-end right-cont"
+        @click="isOpen = true"
       >
         <fa icon="add" /> Add Dealer
       </button>
-      <!-- <example-modal ref="modal"></example-modal> -->
+      <add-dealer-modal
+        :open="isOpen"
+        @close="isOpen = !isOpen"
+      ></add-dealer-modal>
     </div>
-    <!-- <Toolbar class="mb-4">
-      <template #start>
-        <Button label="New" icon="pi pi-plus" class="p-button-success mr-2" />
-        <Button label="Delete" icon="pi pi-trash" class="p-button-danger" />
-      </template>
-    </Toolbar> -->
-    <!-- <DataTable :value="dealers" stripedRows responsiveLayout="scroll">
-      <Column field="id" header="Id"></Column>
-      <Column field="zipCode" header="Zip Code"></Column>
-      <Column field="adress" header="Adress"></Column> -->
-    <!-- <Column header="Options"></Column> -->
-    <!-- </DataTable> -->
 
     <table class="table table-striped">
       <thead>
@@ -39,12 +31,13 @@
           <td class="col-4">{{ dealer.adress }}</td>
           <td class="col-3">
             <button
+              @click="isOpen = true"
               class="btn btn-outline-warning btn-sm"
               title="Edit"
-              @click="updateDealer(dealer.id)"
             >
               <fa icon="edit" />
             </button>
+
             <button class="btn btn-outline-info btn-sm" title="View Details">
               <router-link
                 :to="{ name: 'DealerDetails', params: { id: dealer.id } }"
@@ -54,10 +47,14 @@
             <button
               class="btn btn-outline-danger btn-sm"
               title="Remove"
-              @click="deleteDealer(dealer.id)"
+              @click="isOpen = true"
             >
               <fa icon="remove" />
             </button>
+            <confirm-modal
+              :open="isOpen"
+              @close="isOpen = !isOpen"
+            ></confirm-modal>
           </td>
         </tr>
       </tbody>
@@ -67,26 +64,28 @@
 
 <script>
 import DealerService from '@/services/DealerService.js'
-//import exampleModal from '../components/exampleModal.vue'
-//import $ from 'jquery'
-import 'vuex'
+import AddDealerModal from '../components/AddDealerModal.vue'
+//import DeleteDealerComponent from '../components/DeleteDealerComponent.vue'
+//import EditDealerModal from '../components/EditDealerModal.vue'
+import ConfirmModal from '../components/ConfirmModal.vue'
+import { ref } from 'vue'
 
 export default {
   name: 'Dealer',
   props: ['role'],
   components: {
-    /*exampleModal*/
+    AddDealerModal,
+    ConfirmModal,
+    // EditDealerModal,
+    //DeleteDealerComponent,
+  },
+  setup() {
+    const isOpen = ref(false)
+    return { isOpen }
   },
   data() {
     return {
       dealers: null,
-      //dealerDialog: false,
-      // deleteDealerDialog: false,
-      // deleteDealersDialog: false,
-      // dealer: {},
-      // selectedDealers: null,
-      // filters: {},
-      // submitted: false,
     }
   },
   mounted() {
@@ -94,10 +93,6 @@ export default {
     DealerService.getDealers()
       .then((response) => {
         this.dealers = response.data
-        // if ('Manager' == response.data.userRoles) {
-        //   this.isManager = false
-        //   console.log(this.isManager)
-        // }
       })
       .catch((error) => {
         console.log(error)
@@ -114,28 +109,7 @@ export default {
       })
     },
 
-    updateDealer(id) {
-      console.log(id)
-      DealerService.updateDealer(id)
-    },
-
-    // showModal() {
-    //   console.log('mustafaaaaaaaaaaaaaa')
-    //   console.log(this.$refs.modal.$el, ' deneme')
-    //   let element = this.$refs.modal.$el
-    //   console.log(element, 'dsfdfsfds')
-    //   element.modal('show')
-    // },
-
-    // openNew() {
-    //   this.dealer = {}
-    //   this.submitted = false
-    //   this.productDialog = true
-    // },
-
-    // confirmDeleteSelected() {
-    //   this.deleteProductsDialog = true
-    // },
+    sendData() {},
   },
 }
 </script>

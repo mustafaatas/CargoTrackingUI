@@ -28,12 +28,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto me-2">
             <li class="nav-item">
-              <router-link class="nav-link" to="/dealer" v-if="user"
+              <router-link
+                class="nav-link"
+                to="/"
+                v-if="role == 'Dealer Manager'"
+                >Your Dealer</router-link
+              >
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/dealer" v-if="isManager()"
                 >Dealers</router-link
               >
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/employee" v-if="user"
+              <router-link class="nav-link" to="/employee" v-if="isManager()"
                 >Employees</router-link
               >
             </li>
@@ -59,20 +67,38 @@
 </template>
 
 <script>
-import axios from 'axios'
+import UserService from '../services/UserService'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'Navbar',
+  data() {
+    return {
+      role: '',
+    }
+  },
+
   computed: {
     ...mapGetters(['user']),
   },
+
   methods: {
     logout() {
-      axios.post('https://localhost:44384/Authenticate/Logout')
+      UserService.logout()
       localStorage.removeItem('jwtToken')
       localStorage.removeItem('user')
       this.$store.dispatch('user', null)
+    },
+
+    isManager() {
+      if (this.user) {
+        let role = this.user.userRoles
+        if (role == 'Manager') {
+          console.log(role)
+          return true
+        }
+        return false
+      }
     },
   },
 }

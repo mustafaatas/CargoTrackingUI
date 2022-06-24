@@ -11,15 +11,9 @@ const store = new Vuex.Store({
   },
   mutations: {
     setUser(state, user) {
-      console.log("giriyor")
       state.user = user;
     }
   },
-  // actions: {
-  //   updateUser({ commit }, user) {
-  //     commit('setUser', user)
-  //   }
-  // }
 })
 
 export default store
